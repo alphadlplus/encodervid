@@ -212,7 +212,7 @@ async def save_url(client, message):
 
     if not size :
         return await sent_msg.edit(Chat.FILE_SIZE_ERROR)
-    if size>(2*1000*1000*1000) :
+    if size>(4*1000*1000*1000) :
         return await sent_msg.edit(Chat.MAX_FILE_SIZE)
 
     if not os.path.exists(Config.DOWNLOAD_DIR) :
