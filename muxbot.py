@@ -37,4 +37,4 @@ if __name__ == '__main__':
         plugins = plugins
     )
     app.start()
-    botcli.start()
+botcli.start()
