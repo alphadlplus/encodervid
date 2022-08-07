@@ -17,7 +17,7 @@ else:
 from helper_func.dbhelper import Database as Db
 db = Db().setup()
 
-import pyrogram
+from pyrogram import idle
 from botclient import botcli, app
 logging.getLogger('pyrogram').setLevel(logging.WARNING)
 
@@ -28,4 +28,6 @@ if __name__ == '__main__':
         os.mkdir(Config.DOWNLOAD_DIR)
     
     app.run()
-#     botcli.start()
+    botcli.start()
+idle()
+app.stop()
