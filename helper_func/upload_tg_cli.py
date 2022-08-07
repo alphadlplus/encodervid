@@ -1,6 +1,6 @@
 from pyrogram import Client
 from pyrogram.raw.types import User
-from muxbot import botcli
+from botclient import botcli
 
 
 
