@@ -10,6 +10,6 @@ class Config:
     CHANNEL_MOVIE = -1001449081541
     CHANNEL_SERIES = -1001477968568
     #comma seperated user id of users who are allowed to use
-    ALLOWED_USERS = [x.strip(' ') for x in os.environ.get('ALLOWED_USERS','1').split(',')]
+    ALLOWED_USERS = [x.strip(' ') for x in os.environ.get('ALLOWED_USERS','237379411').split(',')]
 
     DOWNLOAD_DIR = 'downloads'
