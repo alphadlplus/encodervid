@@ -28,4 +28,4 @@ if __name__ == '__main__':
         os.mkdir(Config.DOWNLOAD_DIR)
     
     app.start()
-    botcli.start()
+#     botcli.start()
