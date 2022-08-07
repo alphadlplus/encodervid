@@ -5,7 +5,7 @@ from config import Config
 
 plugins = dict(root='plugins')
 
-app = pyrogram.Client(
+app = Client(
         'Subtitle Muxer',
         bot_token = Config.BOT_TOKEN,
         api_id = Config.APP_ID,
