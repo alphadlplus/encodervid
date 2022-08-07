@@ -76,12 +76,13 @@ async def softmux(client, message):
     os.rename(Config.DOWNLOAD_DIR+'/'+softmux_filename,Config.DOWNLOAD_DIR+'/'+final_filename)
 
     start_time = time.time()
+    chat_id_file = channel_id if channel_id else chat_id
     custom_name = Renamer_TG(final_filename)
     filesize = os.path.getsize(os.path.join(Config.DOWNLOAD_DIR, final_filename))
     filesize = humanbytes(filesize)
     try:
         sent_message = await client.send_document(
-                                                    chat_id, 
+                                                    chat_id_file, 
                                                     progress = progress_bar,
                                                     file_name = custom_name,
                                                     progress_args = (
@@ -96,12 +97,12 @@ async def softmux(client, message):
         await sent_msg.edit(text)
     except Exception as e:
         if str(e) == "Telegram doesn't support uploading files bigger than 2000 MiB":
-            sent_message = await up_to_telegram(os.path.join(Config.DOWNLOAD_DIR, final_filename), chat_id, Renamer_TG(final_filename))
+            sent_message = await up_to_telegram(os.path.join(Config.DOWNLOAD_DIR, final_filename), chat_id_file, Renamer_TG(final_filename))
         else:
             print(e)
             await client.send_message(chat_id, 'An error occured while uploading the file!\nCheck logs for details of the error!')
-    if chat_id == Config.CHANNEL_MOVIE or chat_id == Config.CHANNEL_SERIES:
-        typ = "series" if chat_id == Config.CHANNEL_SERIES else "movie"
+    if chat_id_file == Config.CHANNEL_MOVIE or chat_id_file == Config.CHANNEL_SERIES:
+        typ = "series" if chat_id_file == Config.CHANNEL_SERIES else "movie"
         insert_data = insert(typ, sent_message.id, custom_name, filesize , message_data[1])
     path = Config.DOWNLOAD_DIR+'/'
     os.remove(path+og_sub_filename)
@@ -145,12 +146,13 @@ async def hardmux(client, message):
     os.rename(Config.DOWNLOAD_DIR+'/'+hardmux_filename,Config.DOWNLOAD_DIR+'/'+final_filename)
     
     start_time = time.time()
+    chat_id_file = channel_id if channel_id else chat_id
     custom_name = Renamer_TG(final_filename)
     filesize = os.path.getsize(os.path.join(Config.DOWNLOAD_DIR, final_filename))
     filesize = humanbytes(filesize)
     try:
         sent_message = await client.send_video(
-                                                chat_id, 
+                                                chat_id_file, 
                                                 progress = progress_bar,
                                                 file_name = custom_name,
                                                 progress_args = (
@@ -165,12 +167,12 @@ async def hardmux(client, message):
         await sent_msg.edit(text)
     except Exception as e:
         if str(e) == "Telegram doesn't support uploading files bigger than 2000 MiB":
-            sent_message = await up_to_telegram(os.path.join(Config.DOWNLOAD_DIR, final_filename), chat_id, Renamer_TG(final_filename))
+            sent_message = await up_to_telegram(os.path.join(Config.DOWNLOAD_DIR, final_filename), chat_id_file, Renamer_TG(final_filename))
         else:
             print(e)
             await client.send_message(chat_id, 'An error occured while uploading the file!\nCheck logs for details of the error!')
-    if chat_id == Config.CHANNEL_MOVIE or chat_id == Config.CHANNEL_SERIES:
-        typ = "series" if chat_id == Config.CHANNEL_SERIES else "movie"
+    if chat_id_file == Config.CHANNEL_MOVIE or chat_id_file == Config.CHANNEL_SERIES:
+        typ = "series" if chat_id_file == Config.CHANNEL_SERIES else "movie"
         insert_data = insert(typ, sent_message.id, custom_name, filesize , message_data[1])
     path = Config.DOWNLOAD_DIR+'/'
     os.remove(path+og_sub_filename)
@@ -213,13 +215,13 @@ async def softremove(client, message):
     os.rename(Config.DOWNLOAD_DIR+'/'+softmux_filename,Config.DOWNLOAD_DIR+'/'+final_filename)
 
     start_time = time.time()
-    chat_id = channel_id if channel_id else chat_id
+    chat_id_file = channel_id if channel_id else chat_id
     custom_name = Renamer_TG(final_filename)
     filesize = os.path.getsize(os.path.join(Config.DOWNLOAD_DIR, final_filename))
     filesize = humanbytes(filesize)
     try:
         sent_message = await client.send_document(
-                                                    chat_id, 
+                                                    chat_id_file, 
                                                     progress = progress_bar,
                                                     file_name = custom_name,
                                                     progress_args = (
@@ -235,12 +237,12 @@ async def softremove(client, message):
         await sent_msg.edit(text)
     except Exception as e:
         if str(e) == "Telegram doesn't support uploading files bigger than 2000 MiB":
-            sent_message = await up_to_telegram(os.path.join(Config.DOWNLOAD_DIR, final_filename), chat_id, Renamer_TG(final_filename))
+            sent_message = await up_to_telegram(os.path.join(Config.DOWNLOAD_DIR, final_filename), chat_id_file, Renamer_TG(final_filename))
         else:
             print(e)
             await client.send_message(chat_id, 'An error occured while uploading the file!\nCheck logs for details of the error!')
-    if chat_id == Config.CHANNEL_MOVIE or chat_id == Config.CHANNEL_SERIES:
-        typ = "series" if chat_id == Config.CHANNEL_SERIES else "movie"
+    if chat_id_file == Config.CHANNEL_MOVIE or chat_id_file == Config.CHANNEL_SERIES:
+        typ = "series" if chat_id_file == Config.CHANNEL_SERIES else "movie"
         insert_data = insert(typ, sent_message.id, custom_name, filesize , message_data[1])
     path = Config.DOWNLOAD_DIR+'/'
     os.remove(path+og_sub_filename)
