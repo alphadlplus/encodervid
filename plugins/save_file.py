@@ -9,7 +9,7 @@ import os
 import time
 from chat import Chat
 from config import Config
-from pyrogram import Client, filters
+from pyrogram import Client, filters, errors
 from helper_func.progress_bar import progress_bar
 from helper_func.dbhelper import Database as Db
 import re
@@ -50,12 +50,14 @@ async def save_doc(client, message):
             chat_id = chat_id,
             message_id = downloading.id
         )
-
-    await client.edit_message_text(
-        text = Chat.DOWNLOAD_SUCCESS.format(round(time.time()-start_time)),
-        chat_id = chat_id,
-        message_id = downloading.id
-    )
+    try:
+        await client.edit_message_text(
+            text = Chat.DOWNLOAD_SUCCESS.format(round(time.time()-start_time)),
+            chat_id = chat_id,
+            message_id = downloading.id
+        )
+    except errors.MessageNotModified:
+        pass
 
     tg_filename = os.path.basename(download_location)
     try:
@@ -133,11 +135,14 @@ async def save_video(client, message):
             message_id = downloading.id
         )
 
-    await client.edit_message_text(
-        text = Chat.DOWNLOAD_SUCCESS.format(round(time.time()-start_time)),
-        chat_id = chat_id,
-        message_id = downloading.id
-    )
+    try:
+        await client.edit_message_text(
+            text = Chat.DOWNLOAD_SUCCESS.format(round(time.time()-start_time)),
+            chat_id = chat_id,
+            message_id = downloading.id
+        )
+    except errors.MessageNotModified:
+        pass
 
     tg_filename = os.path.basename(download_location)
     try:
