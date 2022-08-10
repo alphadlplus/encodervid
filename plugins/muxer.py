@@ -211,7 +211,7 @@ async def softremove(client, message):
 
     start_time = time.time()
     chat_id_file = channel_id if channel_id else chat_id
-    custom_name = Renamer_TG(final_filename)
+    custom_name = Renamer_TG(final_filename, False)
     filesize = os.path.getsize(os.path.join(Config.DOWNLOAD_DIR, final_filename))
     filesize = humanbytes(filesize)
     try:
