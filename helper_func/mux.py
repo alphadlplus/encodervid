@@ -154,7 +154,7 @@ async def softremove_vid(vid_filename, msg):
             '-i',vid,
             '-map','0:v:0',
             '-map','0:a?',
-            '-map','1:0',
+            '-map','-0:s',
             '-c:v','copy',
             '-c:a','copy',
             '-y',out_location
