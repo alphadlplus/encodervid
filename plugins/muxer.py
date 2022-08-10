@@ -68,6 +68,7 @@ async def softmux(client, message):
     text = 'Your File is Being Soft Subbed. This should be done in few seconds!'
     sent_msg = await client.send_message(chat_id, text)
 
+    softmux_filename = await softremove_vid(og_vid_filename, sent_msg)
     softmux_filename = await softmux_vid(og_vid_filename, og_sub_filename, sent_msg)
     if not softmux_filename:
         return
@@ -193,21 +194,14 @@ async def softremove(client, message):
             channel_id = Config.CHANNEL_MOVIE if IMDB(message_data[1]) == "movie" else Config.CHANNEL_SERIES
     chat_id = message.from_user.id
     og_vid_filename = db.get_vid_filename(chat_id)
-    og_sub_filename = db.get_sub_filename(chat_id)
     text = ''
     if not og_vid_filename :
         text += 'First send a Video File\n'
-    if not og_sub_filename :
-        text += 'Send a Subtitle File!'
-
-    if not (og_sub_filename and og_vid_filename) :
-        await client.send_message(chat_id, text)
-        return
 
     text = 'Your File is Being Soft Subbed. This should be done in few seconds!'
     sent_msg = await client.send_message(chat_id, text)
 
-    softmux_filename = await softremove_vid(og_vid_filename, og_sub_filename, sent_msg)
+    softmux_filename = await softremove_vid(og_vid_filename, sent_msg)
     if not softmux_filename:
         return
 
@@ -245,7 +239,6 @@ async def softremove(client, message):
         typ = "series" if chat_id_file == Config.CHANNEL_SERIES else "movie"
         insert_data = insert(typ, sent_message.id, custom_name, filesize , message_data[1])
     path = Config.DOWNLOAD_DIR+'/'
-    os.remove(path+og_sub_filename)
     os.remove(path+og_vid_filename)
     try :
         os.remove(path+final_filename)
