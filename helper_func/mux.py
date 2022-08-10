@@ -138,30 +138,26 @@ async def hardmux_vid(vid_filename, sub_filename, msg):
     return output
 
 
-async def softremove_vid(vid_filename, sub_filename, msg):
+async def softremove_vid(vid_filename, msg):
 
     start = time.time()
     vid = Config.DOWNLOAD_DIR+'/'+vid_filename
-    sub = Config.DOWNLOAD_DIR+'/'+sub_filename
 
     out_file = '.'.join(vid_filename.split('.')[:-1])
     output = out_file+'1.mkv'
     out_location = Config.DOWNLOAD_DIR+'/'+output
-    sub_ext = sub_filename.split('.').pop()
 
     #Removes all other fields and keep only
     #video and audio fields
     command = [
             'ffmpeg','-hide_banner',
             '-i',vid,
-            '-i',sub,
             '-map','0:v:0',
             '-map','0:a?',
             '-map','1:0',
             '-disposition:s:0','default',
             '-c:v','copy',
             '-c:a','copy',
-            '-c:s',sub_ext,
             '-y',out_location
             ]
 
