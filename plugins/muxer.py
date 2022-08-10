@@ -69,7 +69,7 @@ async def softmux(client, message):
     sent_msg = await client.send_message(chat_id, text)
 
     softmux_filename = await softremove_vid(og_vid_filename, sent_msg)
-    softmux_filename = await softmux_vid(og_vid_filename, og_sub_filename, sent_msg)
+    softmux_filename = await softmux_vid(softmux_filename, og_sub_filename, sent_msg)
     if not softmux_filename:
         return
 
@@ -98,7 +98,7 @@ async def softmux(client, message):
         await sent_msg.edit(text)
     except Exception as e:
         if str(e) == "Telegram doesn't support uploading files bigger than 2000 MiB":
-            sent_message = await up_to_telegram(os.path.join(Config.DOWNLOAD_DIR, final_filename), chat_id_file, Renamer_TG(final_filename))
+            sent_message = await up_to_telegram(os.path.join(Config.DOWNLOAD_DIR, final_filename), chat_id_file, custom_name)
         else:
             print(e)
             await client.send_message(chat_id, 'An error occured while uploading the file!\nCheck logs for details of the error!')
@@ -138,7 +138,8 @@ async def hardmux(client, message):
     text = 'Your File is Being Hard Subbed. This might take a long time!'
     sent_msg = await client.send_message(chat_id, text)
 
-    hardmux_filename = await hardmux_vid(og_vid_filename, og_sub_filename, sent_msg)
+    softmux_filename = await softremove_vid(og_vid_filename, sent_msg)
+    hardmux_filename = await hardmux_vid(softmux_filename, og_sub_filename, sent_msg)
     
     if not hardmux_filename:
         return
@@ -168,7 +169,7 @@ async def hardmux(client, message):
         await sent_msg.edit(text)
     except Exception as e:
         if str(e) == "Telegram doesn't support uploading files bigger than 2000 MiB":
-            sent_message = await up_to_telegram(os.path.join(Config.DOWNLOAD_DIR, final_filename), chat_id_file, Renamer_TG(final_filename))
+            sent_message = await up_to_telegram(os.path.join(Config.DOWNLOAD_DIR, final_filename), chat_id_file, custom_name)
         else:
             print(e)
             await client.send_message(chat_id, 'An error occured while uploading the file!\nCheck logs for details of the error!')
@@ -231,7 +232,7 @@ async def softremove(client, message):
         await sent_msg.edit(text)
     except Exception as e:
         if str(e) == "Telegram doesn't support uploading files bigger than 2000 MiB":
-            sent_message = await up_to_telegram(os.path.join(Config.DOWNLOAD_DIR, final_filename), chat_id_file, Renamer_TG(final_filename))
+            sent_message = await up_to_telegram(os.path.join(Config.DOWNLOAD_DIR, final_filename), chat_id_file, custom_name)
         else:
             print(e)
             await client.send_message(chat_id, 'An error occured while uploading the file!\nCheck logs for details of the error!')
