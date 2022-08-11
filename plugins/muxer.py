@@ -97,7 +97,7 @@ async def softmux(client, message):
         text = 'File Successfully Uploaded!\nTotal Time taken : {} seconds'.format(round(time.time()-start_time))
         await sent_msg.edit(text)
     except Exception as e:
-        if str(e) == "Telegram doesn't support uploading files bigger than 2000 MiB":
+        if str(e) == "Can't upload files bigger than 2000 MiB":
             sent_message = await up_to_telegram(os.path.join(Config.DOWNLOAD_DIR, final_filename), chat_id_file, custom_name)
         else:
             print(e)
@@ -168,7 +168,7 @@ async def hardmux(client, message):
         text = 'File Successfully Uploaded!\nTotal Time taken : {} seconds'.format(round(time.time()-start_time))
         await sent_msg.edit(text)
     except Exception as e:
-        if str(e) == "Telegram doesn't support uploading files bigger than 2000 MiB":
+        if str(e) == "Can't upload files bigger than 2000 MiB":
             sent_message = await up_to_telegram(os.path.join(Config.DOWNLOAD_DIR, final_filename), chat_id_file, custom_name)
         else:
             print(e)
@@ -231,7 +231,7 @@ async def softremove(client, message):
         text = 'File Successfully Uploaded!\nTotal Time taken : {} seconds'.format(round(time.time()-start_time))
         await sent_msg.edit(text)
     except Exception as e:
-        if str(e) == "Telegram doesn't support uploading files bigger than 2000 MiB":
+        if str(e) == "Can't upload files bigger than 2000 MiB":
             sent_message = await up_to_telegram(os.path.join(Config.DOWNLOAD_DIR, final_filename), chat_id_file, custom_name)
         else:
             print(e)
