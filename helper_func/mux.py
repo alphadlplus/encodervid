@@ -84,12 +84,14 @@ async def softmux_vid(vid_filename, sub_filename, msg):
             read_stderr(start,msg, process),
             process.wait(),
         ])
-    
-    if process.returncode == 0:
-        await msg.edit('Muxing  Completed Successfully!\n\nTime taken : {} seconds'.format(round(start-time.time())))
-    else:
-        await msg.edit('An Error occured while Muxing!')
-        return False
+    try:
+        if process.returncode == 0:
+            await msg.edit('Muxing  Completed Successfully!\n\nTime taken : {} seconds'.format(round(start-time.time())))
+        else:
+            await msg.edit('An Error occured while Muxing!')
+            return False
+    except errors.MessageNotModified:
+        pass
     time.sleep(2)
     return output
 
@@ -127,12 +129,14 @@ async def hardmux_vid(vid_filename, sub_filename, msg):
             read_stderr(start,msg, process),
             process.wait(),
         ])
-    
-    if process.returncode == 0:
-        await msg.edit('Muxing  Completed Successfully!\n\nTime taken : {} seconds'.format(round(start-time.time())))
-    else:
-        await msg.edit('An Error occured while Muxing!')
-        return False
+    try:
+        if process.returncode == 0:
+            await msg.edit('Muxing  Completed Successfully!\n\nTime taken : {} seconds'.format(round(start-time.time())))
+        else:
+            await msg.edit('An Error occured while Muxing!')
+            return False
+    except errors.MessageNotModified:
+        pass
     
     time.sleep(2)
     return output
@@ -173,11 +177,14 @@ async def softremove_vid(vid_filename, msg):
             read_stderr(start,msg, process),
             process.wait(),
         ])
+    try:
+        if process.returncode == 0:
+            await msg.edit('Muxing  Completed Successfully!\n\nTime taken : {} seconds'.format(round(start-time.time())))
+        else:
+            await msg.edit('An Error occured while Muxing!')
+            return False
+    except errors.MessageNotModified:
+        pass
     
-    if process.returncode == 0:
-        await msg.edit('Muxing  Completed Successfully!\n\nTime taken : {} seconds'.format(round(start-time.time())))
-    else:
-        await msg.edit('An Error occured while Muxing!')
-        return False
     time.sleep(2)
     return output
