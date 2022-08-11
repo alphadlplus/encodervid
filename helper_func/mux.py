@@ -3,6 +3,7 @@ from config import Config
 import time
 import re
 import asyncio
+from pyrogram import errors
 
 
 progress_pattern = re.compile(
