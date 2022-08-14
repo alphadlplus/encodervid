@@ -5,7 +5,7 @@ from botclient import botcli
 
 
 async def up_to_telegram(file_loc, from_user, custom_name):
-    print(botcli.get_me())
+    print(await botcli.get_me())
     sent_message = await botcli.send_document(
         chat_id=from_user,
         document=file_loc,
