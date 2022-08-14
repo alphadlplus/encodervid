@@ -1,5 +1,3 @@
-from pyrogram import Client
-from pyrogram.raw.types import User
 from botclient import botcli
 
 
