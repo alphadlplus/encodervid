@@ -29,5 +29,6 @@ if __name__ == '__main__':
     
     app.run()
     botcli.start()
+    print(botcli.get_me())
 idle()
 app.stop()
