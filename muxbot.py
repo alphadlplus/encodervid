@@ -31,3 +31,4 @@ if __name__ == '__main__':
     botcli.start()
 idle()
 app.stop()
+botcli.stop()
