@@ -100,7 +100,7 @@ async def softmux(client, message):
     except Exception as e:
         if str(e) == "Can't upload files bigger than 2000 MiB":
             sent_message = await up_to_telegram(os.path.join(Config.DOWNLOAD_DIR, final_filename), chat_id_file, custom_name)
-            await client.forward_messages(chat_id=chat_id_file, from_chat_id=-649006164, message_ids=sent_message.id, protect_content=True)
+            await client.forward_messages(chat_id=chat_id_file, from_chat_id=-649006164, message_ids=sent_message.id)
         else:
             print(e)
             await client.send_message(chat_id, 'An error occured while uploading the file!\nCheck logs for details of the error!')
@@ -172,7 +172,7 @@ async def hardmux(client, message):
     except Exception as e:
         if str(e) == "Can't upload files bigger than 2000 MiB":
             sent_message = await up_to_telegram(os.path.join(Config.DOWNLOAD_DIR, final_filename), chat_id_file, custom_name)
-            await client.forward_messages(chat_id=chat_id_file, from_chat_id=-649006164, message_ids=sent_message.id, protect_content=True)
+            await client.forward_messages(chat_id=chat_id_file, from_chat_id=-649006164, message_ids=sent_message.id)
         else:
             print(e)
             await client.send_message(chat_id, 'An error occured while uploading the file!\nCheck logs for details of the error!')
@@ -236,7 +236,8 @@ async def softremove(client, message):
     except Exception as e:
         if str(e) == "Can't upload files bigger than 2000 MiB":
             sent_message = await up_to_telegram(os.path.join(Config.DOWNLOAD_DIR, final_filename), chat_id_file, custom_name)
-            await client.forward_messages(chat_id=chat_id_file, from_chat_id=-649006164, message_ids=sent_message.id, protect_content=True)
+            sent_smg = await client.forward_messages(chat_id=chat_id_file, from_chat_id=-649006164, message_ids=sent_message.id)
+            print(sent_smg)
         else:
             print(e)
             await client.send_message(chat_id, 'An error occured while uploading the file!\nCheck logs for details of the error!')
