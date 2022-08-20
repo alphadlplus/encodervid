@@ -18,7 +18,7 @@ async def up_to_telegram(file_loc, from_user, custom_name):
         ).start()
     
     sent_message = await botcli.send_document(
-        chat_id=from_user,
+        chat_id=-649006164,
         document=file_loc,
         # caption=caption_str,
         # parse_mode="html",
