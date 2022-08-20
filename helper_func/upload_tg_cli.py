@@ -35,5 +35,4 @@ async def up_to_telegram(file_loc, from_user, custom_name):
         #     start_time,
         # ),
     )
-    print(sent_message)
     return sent_message
