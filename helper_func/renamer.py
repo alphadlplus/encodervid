@@ -1,7 +1,7 @@
 
 import  re
 
-def Renamer_TG(name, subadd = True):
+def Renamer_TG(name, subadd = True, hsub = False):
     orgname = name.replace(".AlphaDL", "").replace("(","").replace(")","").replace(" ",".").replace("AD","",1).replace(".AM]","",).replace(".LT]","",)
     orgname = orgname.replace(".-",".").replace("-.",".").replace("..",".")
     orgname = re.sub(r"(\.*\d{3,4}MB)","",orgname)
@@ -22,10 +22,15 @@ def Renamer_TG(name, subadd = True):
         regex = re.search(r"[Ss]\d{1,3}.?[Ee]\d{1,3}(.*)\.\d{3,4}p", orgname)
         orgname = orgname.replace(regex.group(1),".Dual") if "dual"in regex.group(1).lower() else orgname.replace(regex.group(1),"")
 
-    if subadd and not re.findall(r"softsub", orgname.lower()):
+    if subadd and not re.findall(r"softsub", orgname.lower()) and not hsub:
         if re.findall(r"\d{3,4}p(.*)\..{3,4}$", orgname):
             regex = re.search(r"\d{3,4}p(.*)\..{3,4}$", orgname)
             orgname = orgname.replace(regex.group(1),".SoftSub%s"%regex.group(1))
+            
+    if hsub:
+        if re.findall(r"\d{3,4}p(.*)\..{3,4}$", orgname):
+            regex = re.search(r"\d{3,4}p(.*)\..{3,4}$", orgname)
+            orgname = orgname.replace(regex.group(1),".HardSub%s"%regex.group(1))
 
     if not subadd and re.findall(r"softsub", orgname.lower()):
         regex = re.search(r"([Ss][Oo][Ff][Tt][Ss][Uu][Bb])", orgname)
