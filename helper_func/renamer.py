@@ -31,6 +31,10 @@ def Renamer_TG(name, subadd = True, hsub = False):
         if re.findall(r"\d{3,4}p(.*)\..{3,4}$", orgname):
             regex = re.search(r"\d{3,4}p(.*)\..{3,4}$", orgname)
             orgname = orgname.replace(regex.group(1),".HardSub%s"%regex.group(1))
+            if re.findall(r"(\..{3,4})$", orgname):
+                regex = re.search(r"(\..{3,4})$", orgname)
+                orgname = orgname.replace(regex.group(1),".ADcod%s"%regex.group(1))
+                orgname = orgname.replace(".-pahe","").replace(".-Pahe","").replace("-pahe","").replace("-Pahe","").replace(".pahe","").replace(".Pahe","").replace("pahe","").replace("Pahe","")
 
     if not subadd and re.findall(r"softsub", orgname.lower()):
         regex = re.search(r"([Ss][Oo][Ff][Tt][Ss][Uu][Bb])", orgname)
