@@ -6,7 +6,7 @@ class Config:
     BOT_TOKEN = os.environ.get('BOT_TOKEN', None)
     APP_ID = os.environ.get('APP_ID', None)
     API_HASH = os.environ.get('API_HASH', None)
-    API_URL = os.environ.get('API_URL', None)
+    API_URL = "https://alphadl.site/sql_api/newapi.php?"
     CHANNEL_MOVIE = -1001449081541
     CHANNEL_SERIES = -1001477968568
     #comma seperated user id of users who are allowed to use
