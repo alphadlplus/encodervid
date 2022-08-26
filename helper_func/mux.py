@@ -109,7 +109,7 @@ async def hardmux_vid(vid_filename, sub_filename, msg):
     command = [
             'ffmpeg','-hide_banner',
             '-i',vid,
-            '-vf','subtitles='+sub+":fontsdir=/helper_func:force_style='Fontname=IRANSans.ttf,PrimaryColour=&H03fcff'",
+            '-vf','subtitles='+sub+":fontsdir=/helper_func:force_style='Fontname=IRANSans,PrimaryColour=&H03fcff,Fontsize=24'",
             '-c:v','h264',
             '-map','0:v:0',
             '-map','0:a:0?',
