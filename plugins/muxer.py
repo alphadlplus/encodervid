@@ -49,8 +49,8 @@ check_user = filters.create(_check_user)
 @Client.on_message(filters.command('softmux') & check_user & filters.private)
 async def softmux(client, message):
     channel_id = None
-    if "|" in message.text:
-        message_data = message.text.split('|')
+    if "-" in message.text:
+        message_data = message.text.split('-')
         if len(message_data) ==2 :
             channel_id = Config.CHANNEL_MOVIE if IMDB(message_data[1]) == "movie" else Config.CHANNEL_SERIES
     chat_id = message.from_user.id
@@ -121,8 +121,8 @@ async def softmux(client, message):
 @Client.on_message(filters.command('hardmux') & check_user & filters.private)
 async def hardmux(client, message):
     channel_id = None
-    if "|" in message.text:
-        message_data = message.text.split('|')
+    if "-" in message.text:
+        message_data = message.text.split('-')
         if len(message_data) ==2 :
             channel_id = Config.CHANNEL_MOVIE if IMDB(message_data[1]) == "movie" else Config.CHANNEL_SERIES
     chat_id = message.from_user.id
@@ -192,8 +192,8 @@ async def hardmux(client, message):
 @Client.on_message(filters.command('softremove') & check_user & filters.private)
 async def softremove(client, message):
     channel_id = None
-    if "|" in message.text:
-        message_data = message.text.split('|')
+    if "-" in message.text:
+        message_data = message.text.split('-')
         if len(message_data) ==2 :
             channel_id = Config.CHANNEL_MOVIE if IMDB(message_data[1]) == "movie" else Config.CHANNEL_SERIES
     chat_id = message.from_user.id
