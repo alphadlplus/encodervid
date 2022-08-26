@@ -102,7 +102,6 @@ async def hardmux_vid(vid_filename, sub_filename, msg):
     start = time.time()
     vid = Config.DOWNLOAD_DIR+'/'+vid_filename
     sub = Config.DOWNLOAD_DIR+'/'+sub_filename
-    
     out_file = '.'.join(vid_filename.split('.')[:-1])
     output = out_file+'1.mp4'
     out_location = Config.DOWNLOAD_DIR+'/'+output
@@ -110,7 +109,7 @@ async def hardmux_vid(vid_filename, sub_filename, msg):
     command = [
             'ffmpeg','-hide_banner',
             '-i',vid,
-            '-vf','subtitles='+sub,
+            '-vf','subtitles='+sub+":fontsdir=/helper_func:force_style='Fontname=IRANSans'",
             '-c:v','h264',
             '-map','0:v:0',
             '-map','0:a:0?',
