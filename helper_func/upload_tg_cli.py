@@ -6,7 +6,7 @@ from config import Config
 
 
 async def up_to_telegram(file_loc, from_user, custom_name):
-    session_string = "BADK7tsAGX2RVBI-3IJxamHISTwVH7VdLJ3d0VTwPWxND-MSvkehUDjzBn6EVS9FIRw6-dK4JVxOEFgawsKu8F5l2BZsg5nr3l4x323P9Ssr2HBQcqhfv9LJL6EmusZrQvD16a--GojMoVntSRYqaRe1Sf1-XSF_qEUIQgC1OIgb7PcU0rxuGojIv6wkMIsSh_ZfwBr6MHGlP3HxNCRb9VY_D2KA1MrP5P91-bGatBGja-bAsZPgUFcq8Usc0wGjBFVYqBNE1l9BBwzmY8eQckf8MGAROW3i2QouxJve-v5Jslv1-vy6c9h-tdNSpnZB-d2vMq2z3jqabmWpgGv5ouRPWWvXVAAAAAFE1lFcAA"
+    session_string = "BADTy8EAm_XxRBPTSlz6ADvwvblbXrWDpp5ZT9ARg6TCRnXdHxczHK9G90XkZlg0mhmNJXGMWsGRYVVECQL3qLowOvuXYB9xxaVM2IEusQzwKnToYOrKvaW5BXfakJuFOHLKqaxxb6-sooFdDQB-5SUNk2MA754yV9LCAEgLvdTz2FxFmlzqQomoDBmOCABx7R6P29GTFGxWq_kUmaaVmSyJp94RBozZbm-PzIChED9M2SPODmSBBxIwQavEFZiGorZ4dSLJg3B5CoWR0lNylawpIe_WaFmIIii5NwQRLBxGGx8nfQk3OhtpCl71eDr7Ja_kv1vIh5IoDe-nZCjRxc7cM8ypPAAAAAFQ20LQAA"
     botcli = await Client(
         "alphadl-leecher",
         api_id=Config.APP_ID,
