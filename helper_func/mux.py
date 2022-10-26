@@ -68,7 +68,7 @@ async def softmux_vid(vid_filename, sub_filename, msg):
             '-disposition:s:0','default',
             '-vf', 'scale=-1:720',
             '-crf', '18',
-            '-preset', 'veryslow',
+            '-preset', 'medium',
             '-c:v','libx264',
             '-c:a','copy',
             '-c:s',sub_ext,
